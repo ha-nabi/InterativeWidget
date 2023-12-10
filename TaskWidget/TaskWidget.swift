@@ -49,10 +49,11 @@ struct TaskWidgetEntryView : View {
                         .foregroundStyle(.gray)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    // Sorting Completed to Last
-                    ForEach(entry.lastThreeTasks.sorted {
-                        !$0.isCompleted && $1.isCompleted
-                    }) { task in
+                    // 완료 됐을 때 제일 밑으로 내려가게끔 하는 로직
+//                    ForEach(entry.lastThreeTasks.sorted {
+//                        !$0.isCompleted && $1.isCompleted
+//                    }) { task in
+                        ForEach(entry.lastThreeTasks) { task in
                         HStack(spacing: 6) {
                             Button(intent: ToggleStateIntent(id: task.id)) {
                                 Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
